@@ -126,7 +126,7 @@
 						<option value="December">December</option>
 					</select>
                   Couple Picture  <input type="file" class="form-group" name="couple_picture" ><br>
-                    <input type="text" class="form-group" name="online_teller" ><br>
+                    <!-- <input type="text" class="form-group" name="online_teller" ><br> -->
                     <input class="form-group" type="text" name="reference" value="{{ old('reference') }}" id="refcode">
                     <input type="text" id="add" name="contest_fee">
                     <input type="submit" value="register">
@@ -146,7 +146,7 @@
              
     function payWithPaystack(){
 var handler = PaystackPop.setup({
-key: 'pk_live_4e20a50b1c7c946f4a80e737066df24e6b5eb38b',
+key: 'pk_test_4e1a285859f273d837b6f3a1aae6afc0adf46b2e',
 email: document.getElementById("email").value,
 amount: document.getElementById("add").value,
 currency: "NGN",

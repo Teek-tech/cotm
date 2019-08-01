@@ -63,7 +63,7 @@ class ContestController extends Controller
             Image::make($image)->save(public_path('/user_receipt/' . $postUserReceipt));
             $registerUser->receipt = $postUserReceipt;
         }
-        $registerUser->online_teller = $request->input('online_teller');
+        $registerUser->reference = $request->input('reference');
         $registerUser->save();
         return back()->with('success','Your registration was successful.');
     }

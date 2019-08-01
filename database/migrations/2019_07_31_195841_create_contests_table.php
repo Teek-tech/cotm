@@ -30,7 +30,7 @@ class CreateContestsTable extends Migration
             $table->string('couple_picture');
             $table->integer('contest_fee');
             $table->string('receipt')->nullable();
-            $table->string('online_teller')->nullable();
+            $table->string('reference')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });
