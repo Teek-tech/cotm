@@ -1,7 +1,7 @@
 function payWithPaystack(){
    //var nameu = "{{ env('PAYSTACK_KEY') }}";
     var handler = PaystackPop.setup({
-    key: "{{ env('PAYSTACK_KEY') }}", //'pk_test_4e1a285859f273d837b6f3a1aae6afc0adf46b2e', 
+    key:'pk_test_4e1a285859f273d837b6f3a1aae6afc0adf46b2e', // "{{ env('PAYSTACK_KEY') }}", //'pk_test_4e1a285859f273d837b6f3a1aae6afc0adf46b2e', 
     email: document.getElementById("email").value,
     amount: document.getElementById("add").value,
     currency: "NGN",
