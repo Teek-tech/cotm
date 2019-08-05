@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>REGISTER | COUPLE OF THE MONTH</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="cotm_reg/fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -22,7 +22,7 @@
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                      {{ session()->get('success') }}
+                     <b style="color:black;"> {{ session()->get('success') }}</b>
                   </div>
               @endif
             <form class="appointment-form" id="appointment-form"name="contestform" action="{{route('user.register')}}"  enctype="multipart/form-data" method="post">
@@ -83,14 +83,15 @@
                     <input type="hidden" id="add" name="contest_fee">
                 <div class="form-check">
                     <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required />
-                    <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree to the  <a href="#" class="term-service">Terms and Conditions</a></label>
+                    <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree to the  <a href="https://mybirthdaysplash.com/contests/terms" class="term-service">Terms and Conditions</a></label>
                 </div>
                 <div class="form-submit">
                 <!-- <input type="button" onclick="payWithPaystack()"  value="Make Payment" /> -->
+                <button type="button" onclick="payWithPaystack()" class="submit">Make Payment</button> <br><br>
                     <input type="submit" name="submit" id="submit" class="submit" value="Complete Registration" />
-                   
+                    
                 </div>
-                <button type="button" onclick="payWithPaystack()" class="contact100-form-btn">Make Payment</button>
+               
             </form>
        
         </div>
