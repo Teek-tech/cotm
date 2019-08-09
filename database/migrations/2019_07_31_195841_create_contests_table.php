@@ -28,6 +28,7 @@ class CreateContestsTable extends Migration
             $table->string('anniversary_month');
             $table->integer('contest_year')->nullable();
             $table->string('couple_picture');
+            $table->string('referrer')->nullable();
             $table->integer('contest_fee');
             $table->string('receipt')->nullable();
             $table->string('reference')->nullable();

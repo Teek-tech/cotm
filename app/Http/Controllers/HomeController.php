@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contest;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $getContestants = Contest::all();
+        $getTotalContestants =  $getContestants->count();
+        $getPaidContestants  =  $getContestants->where('status','0');
+        $getContestantsByMonths =  $getContestants->where('anniversary_month', date('F'));
+        
+        dd($getContestantsByMonths);
+    }
+
+    public function show(){
+        $getContestants = Contest::all();
+
     }
 }
