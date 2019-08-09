@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contest;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
+use Validator;
 
 class ContestController extends Controller
 {
@@ -15,7 +16,7 @@ class ContestController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('welcome');
     }
 
     /**
@@ -36,6 +37,9 @@ class ContestController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'couple_picture' => 'image|mimes:jpg,png,jpeg|max:4000'
+        ]);
         $registerUser =  new Contest();
         $registerUser->first_name_one = $request->input('first_name_one');
         $registerUser->last_name_one = $request->input('last_name_one');
@@ -64,6 +68,7 @@ class ContestController extends Controller
             $registerUser->receipt = $postUserReceipt;
         }
         $registerUser->reference = $request->input('reference');
+        $registerUser->referrer = $request->input('referrer');
         $registerUser->save();
         return back()->with('success','Your registration was successful.');
     }

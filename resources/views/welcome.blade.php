@@ -27,18 +27,18 @@
               @endif
             <form class="appointment-form" id="appointment-form"name="contestform" action="{{route('user.register')}}"  enctype="multipart/form-data" method="post">
                     @csrf
-                    @method('POST')
+                    @method_field('POST')
                 <h2>couple of the month registration form</h2>
                 <div class="form-group-1">
                     <input type="text" name="first_name_one" id="title" value="{{ old('first_name_one') }}" placeholder="Enter First name [couple-one]" required />
                     <input type="text" name="last_name_one" id="title" value="{{ old('last_name_one') }}" placeholder="Enter last name [couple-one]" required />
                      <input type="text" name="first_name_two" id="title" value="{{ old('first_name_two') }}" placeholder="Enter First name [couple-two]" required />
                     <input type="text" name="last_name_two" id="title" value="{{ old('last_name_two') }}" placeholder="Enter last name [couple-two]" required />
-                    <input type="email" name="email" id="email" placeholder="Email" required />
-                    <input type="number" name="phone_no" placeholder="Phone number" required />
-                    <input type="number" name="whatsApp_no" placeholder="WhatsApp number" value="{{ old('whastApp_no') }}" required />
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email" required />
+                    <input type="number" name="phone_no" value="{{ old('phone_no') }}" placeholder="Phone number" required />
+                    <input type="number" name="whatsApp_no" placeholder="WhatsApp number" value="{{ old('whatsApp_no') }}" required />
                       <div class="">
-                        <select name="couple_type" id="">
+                        <select name="couple_type" id="" value="{{old('couple_type')}}" required>
                             <option slected value="">Couple Type</option>
                             <option value="dating">Dating</option>
                             <option value="engaged">Engaged</option>
@@ -68,17 +68,35 @@
 
                         </select>
                     </div>
-                     <input type="text" name="state_of_res" placeholder="Enter State of Residence" required />
+                     <input type="text" name="state_of_res" value="{{ old('state_of_res') }}" placeholder="Enter State of Residence" required />
                     
                 </div>
-                <div class="form-group-2">
+                <div class="form-group-2" {{ $errors->has('couple_picture') ? 'has-error' : ''}}>
                     <i style="color:black; font-style:bold;">Upload a picture of you and your partner?</i>
                      <input type="file" name="couple_picture" required />
+                     {!! $errors->first('couple_picture', '<p  style="color:red;" class="help-block">:message, Max limit for image upload is 4mb</p>') !!}
                 </div>
                  <div class="form-group-2">
                     <i style="color:black; font-style:bold;">Upload Receipt [Upload a screenshot of your payment receipt if you paid direclty to our account]</i>
                       <input type="file" name="receipt" />
                 </div>
+                <div class="">
+                       <select name="referrer">
+                        <option slected value="">Where did you hear about us?</option>
+                        <option value="Chinedu">NONE</option>
+                        <option value="ijeoma">IJEOMA</option>
+                        <option value="chinedu">CHINEDU</option>
+                        <option value="tasie">TASIE</option>
+                        <option value="cynthia">CYNTHIA</option>
+                        <option value="david">DAVID</option>
+                        <option value="somto">SOMTO</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="others">Others</option>
+
+                        </select>
+                    </div>
                 <input class="form-group" type="hidden" name="reference" value="{{ old('reference') }}" id="refcode">
                     <input type="hidden" id="add" name="contest_fee">
                 <div class="form-check">

@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('admin.home');
+//Route::post('/welcome', 'ContestController@index');
 Route::post('/welcome', 'ContestController@store')->name('user.register');
