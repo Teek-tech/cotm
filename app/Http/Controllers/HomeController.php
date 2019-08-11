@@ -24,12 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         $getContestants = Contest::all();
         $getTotalContestants =  $getContestants->count();
-        $getPaidContestants  =  $getContestants->where('status','0');
-        $getContestantsByMonths =  $getContestants->where('anniversary_month', date('F'));
-        
+        $getPaidContestants  =  $getContestants->where('status','1');
+        $getContestantsNotPaid  =  $getContestants->where('status','0');
+        $getContestantsByMonths =  $getContestants->where('anniversary_month', date('F'))->orderBy('updated_at', 'ASCE')->limit(3)->get();
         dd($getContestantsByMonths);
     }
 
