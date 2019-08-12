@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/admin', 'HomeController@index')->name('admin.home');
 //Route::post('/welcome', 'ContestController@index');
 Route::post('/welcome', 'ContestController@store')->name('user.register');
+
+Route::group(['middleware' => ['isAdmin', 'auth']], function () { 
+
+});

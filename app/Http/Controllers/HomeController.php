@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contest;
-
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth','isAdmin');
     }
 
     /**
@@ -32,8 +32,24 @@ class HomeController extends Controller
         dd($getContestantsByMonths);
     }
 
-    public function show(){
+    public function registeredContestants(){
+        $user = Auth::user();
+        $getContestants = Contest::all();
+        $getContestantsByMonths =  $getContestants->where('anniversary_month', date('F'))->orderBy('updated_at', 'ASCE')->limit(3)->get();
+    }
+
+    public function allContestants(){
+        $user = Auth::user();
+        $getContestants = Contest::all();
+    }
+
+    public function viewContestantProfile(){
+        $user = Auth::user();
         $getContestants = Contest::all();
 
+    }
+    public function administerContestantStatus($id){
+        $user = Auth::user();
+        $getContestants = Contest::all();
     }
 }
