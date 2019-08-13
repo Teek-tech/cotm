@@ -1,140 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ADMIN | COUPLE OF THE MONTH</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin | Home</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+ @include('layouts.header')
 </head>
-<body>
 
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
-			MENU
-			</button>
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">
-				Administrator
-			</a>
-		</div>
+  <!-- Main Header -->
+@include('layouts.topnav')
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
-			<form class="navbar-form navbar-left" method="GET" role="search">
-				<div class="form-group">
-					<input type="text" name="q" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>
-				<li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li class="dropdown-header">SETTINGS</li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Logout</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>  	<div class="container-fluid main-container">
-  		<div class="col-md-2 sidebar">
-  			<div class="row">
-	<!-- uncomment code for absolute positioning tweek see top comment in css -->
-	<div class="absolute-wrapper"> </div>
-	<!-- Menu -->
-	<div class="side-menu">
-		<nav class="navbar navbar-default" role="navigation">
-			<!-- Main Menu -->
-			<div class="side-menu-container">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
+<!-- sidebar: style can be found in sidebar.less -->
+@include('layouts.sidenav')
+<!-- /.sidebar -->
+</aside>
 
-					<!-- Dropdown-->
-					<li class="panel panel-default" id="dropdown">
-						<a data-toggle="collapse" href="#dropdown-lvl1">
-							<span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-						</a>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
 
-						<!-- Dropdown level 1 -->
-						<div id="dropdown-lvl1" class="panel-collapse collapse">
-							<div class="panel-body">
-								<ul class="nav navbar-nav">
-									<li><a href="#">Link</a></li>
-									<li><a href="#">Link</a></li>
-									<li><a href="#">Link</a></li>
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{$getTotalContestantsMonth}}</h3>
 
-									<!-- Dropdown level 2 -->
-									<li class="panel panel-default" id="dropdown">
-										<a data-toggle="collapse" href="#dropdown-lvl2">
-											<span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
-										</a>
-										<div id="dropdown-lvl2" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li><a href="#">Link</a></li>
-													<li><a href="#">Link</a></li>
-													<li><a href="#">Link</a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
+              <p>Total Contestants [{{date("F")}}]</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-people"></i>
+            </div>
+            <a href="all_contestants.html" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{$getPaidContestants}}</h3>
+			  <!-- <sup style="font-size: 20px">%</sup> -->
+              <p>Paid Contestants [{{date("Y")}}]</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-people"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{$getContestantsNotPaid}}</h3>
 
-					<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+              <p>Unpaid Contestants [{{date("Y")}}]</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-people"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{$getContestantsByYear}}</h3>
 
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</nav>
+              <p>Total Registered Contestants [{{date("Y")}}]</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="registered_contestants.html" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
 
-	</div>
-</div>  		</div>
-  		<div class="col-md-10 content">
-  			  <div class="panel panel-default">
-	<div class="panel-heading">
-		Dashboard
-	</div>
-	<div class="panel-body">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</div>
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Total Registered Contestants</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+                <tr>
+				<th>S/N</th>
+                  <th>Couple1 & Couple2 </th>
+                  <th>Month</th>
+                  <th>Whatsapp Number</th>
+                  <th>Phone Number</th>
+                  <th>Image</th>
+				  <th>Reference</th>
+				  <th>Receipt</th>
+                  <th>Payment Status</th>
+				  <th>View Profile</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <?php $sn = 1;?>
+			  @foreach($getAllRegisteredContestants as $getUser)
+                <tr>
+				<td>{{$sn++}}</td>
+                  <td><b>{{ucfirst($getUser->first_name_one)}} {{ucfirst($getUser->last_name_one)}}, {{ucfirst($getUser->first_name_two)}} {{ucfirst($getUser->last_name_two)}}</b></td>
+                  <td>{{ucfirst($getUser->anniversary_month)}}</td>
+                  <td>{{ucfirst($getUser->whatsApp_no)}}</td>
+                  <td>{{ucfirst($getUser->phone_no)}}</td>
+                  <td><a href="{{('/user_image/'.$getUser->couple_picture)}}" target="_blank">
+				  <img src="{{asset('user_image/'.$getUser->couple_picture)}}" height='30' width='30' style="border-radius: 50%;"></a></td>
+				 @if(is_null($getUser->reference))
+				  <td>No Ref Found</td>
+				  @else
+				  <td>{{ucfirst($getUser->reference)}}</td>
+				  @endif
+				  @if(is_null($getUser->receipt))
+				  <td>No Receipt Found</td>
+				  @else
+				  <td>{{ucfirst($getUser->receipt)}}</td>
+				  @endif
+				  @if($getUser->status=='0')
+				  <td><button class="btn btn-danger badge" type="button">Pending</button></td>
+				  @else
+				  <td><button class="btn btn-success badge" type="button">Confirmed</button></td>
+				  @endif
+				  <td><a href="{{('/admin/'.$getUser->id.'/couple')}}">Couple Profile</a></td>
+                </tr>
+				@endforeach
+              </tbody>
+            </table>
+			<p><a href="{{route('admin.all-contestants')}}">View all</a></p>
+          </div>
+          <!-- /.table-responsive -->
+          <!-- /.row -->
+          <!-- Main row -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2019 <a href="#">Camet Empire</a>.</strong> All rights reserved.
+  </footer>
+
 </div>
-  		</div>
-  		<footer class="pull-left footer">
-  			<p class="col-md-12">
-  				<hr class="divider">
-  				Copyright &COPY; 2015 <a href="http://www.pingpong-labs.com">Gravitano</a>
-  			</p>
-  		</footer>
-  	</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+@include('layouts.footer')
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
 </html>
