@@ -55,7 +55,7 @@ class ContestController extends Controller
         //$registerUser->couple_picture = $request->input('couple_picture');
         if ($request->hasFile('couple_picture')) {
             $image = $request->file('couple_picture');
-            $postUserImg = $registerUser->email . 'couple_picture' . time() . '.' . $image->getClientOriginalExtension();
+            $postUserImg = 'couple_picture' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save(public_path('/user_image/' . $postUserImg));
             $registerUser->couple_picture = $postUserImg;
         }
@@ -63,14 +63,15 @@ class ContestController extends Controller
         //$registerUser->receipt = $request->input('receipt');
         if ($request->hasFile('receipt')) {
             $image = $request->file('receipt');
-            $postUserReceipt = $registerUser->email . 'receipt' . time() . '.' . $image->getClientOriginalExtension();
+            $postUserReceipt =  'receipt' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save(public_path('/user_receipt/' . $postUserReceipt));
             $registerUser->receipt = $postUserReceipt;
         }
         $registerUser->reference = $request->input('reference');
-        $registerUser->referrer = $request->input('referrer');
+        $registerUser->referrer = $request->input('referrer'); 
+        $registerUser->contest_year = date('Y');
         $registerUser->save();
-        return back()->with('success','Your registration was successful.');
+        return back()->with('success', 'Your registration was successful.');
     }
 
     /**

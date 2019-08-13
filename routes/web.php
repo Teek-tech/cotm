@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/admin', 'HomeController@index')->name('admin.home');
-//Route::post('/welcome', 'ContestController@index');
+//register form
 Route::post('/welcome', 'ContestController@store')->name('user.register');
-
-Route::group(['middleware' => ['isAdmin', 'auth']], function () { 
-
+//Admin
+Route::group(['middleware' => ['auth', 'isAdmin']], function () { 
+    Route::get('/admin', 'HomeController@index')->name('admin.home');
+    Route::any('/admin/all-contestants', 'HomeController@allContestants')->name('admin.all-contestants'); 
+    Route::any('/admin/registered', 'HomeController@registeredContestants')->name('admin.registered');
+    Route::get('/admin/{id}/couple', 'HomeController@viewContestantProfile')->name('admin.registered.couple');  
 });

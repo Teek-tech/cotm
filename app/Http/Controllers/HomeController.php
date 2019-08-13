@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contest;
 use App\User;
+use Illuminate\Support\Facades\Input;
 class HomeController extends Controller
 {
     /**
@@ -12,10 +13,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth','isAdmin');
-    }
 
     /**
      * Show the application dashboard.
@@ -25,27 +22,50 @@ class HomeController extends Controller
     public function index()
     {
         $getContestants = Contest::all();
-        $getTotalContestants =  $getContestants->count();
-        $getPaidContestants  =  $getContestants->where('status','1');
-        $getContestantsNotPaid  =  $getContestants->where('status','0');
-        $getContestantsByMonths =  $getContestants->where('anniversary_month', date('F'))->orderBy('updated_at', 'ASCE')->limit(3)->get();
-        dd($getContestantsByMonths);
+        $getTotalContestantsMonth =  $getContestants->where('anniversary_month',date('F'))->count();
+        $getPaidContestants  =  $getContestants->where('status','1')->count();
+        $getContestantsNotPaid  =  $getContestants->where('status','0')->count();
+        $getContestantsByYear =  $getContestants->where('contest_year', date('Y'))->count();
+        $getAllRegisteredContestants = Contest::orderBy('id', 'DESC')->limit(2)->get();
+        return view('admin.index', 
+        compact('getAllRegisteredContestants',
+        'getContestants',
+        'getPaidContestants',
+        'getContestantsNotPaid',
+        'getContestantsByYear',
+        'getTotalContestantsMonth'));
     }
 
     public function registeredContestants(){
-        $user = Auth::user();
-        $getContestants = Contest::all();
-        $getContestantsByMonths =  $getContestants->where('anniversary_month', date('F'))->orderBy('updated_at', 'ASCE')->limit(3)->get();
+        $getAllRegisteredContestants = Contest::orderBy('id', 'DESC')->paginate(2);
+        $getRef = Input::get('search_registered');
+        $getByPaystackReference = Contest::where('reference', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('reference', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('whatsApp_no', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('first_name_one', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('first_name_two', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('state_of_res', 'LIKE', '%'.$getRef.'%')
+        ->orderBy('id', 'DESC')->paginate(2);
+        if(count($getByPaystackReference) > 0){
+            return view('admin.registered', compact('getAllRegisteredContestants','getByPaystackReference'))->withDetails($getByPaystackReference)->withQuery($getRef);;
+        }
+       return view('admin.registered', compact('getAllRegisteredContestants'));
     }
 
     public function allContestants(){
-        $user = Auth::user();
-        $getContestants = Contest::all();
+        $getAllContestants = Contest::orderBy('id', 'DESC')->paginate(2);
+        $getMonth = Input::get('search_month');
+        $getYear = Input::get('search_year');
+        $searchResults = Contest::where('anniversary_month', $getMonth)->where('contest_year', $getYear)->paginate(1);
+        if(count($searchResults) > 0){
+        return view('admin.all-contestants', compact('getAllContestants','searchResults'))->withDetails($searchResults)->withQuery($getMonth, $getYear);
+        }
+        return view('admin.all-contestants', compact('getAllContestants','searchResults'));
     }
 
-    public function viewContestantProfile(){
-        $user = Auth::user();
-        $getContestants = Contest::all();
+    public function viewContestantProfile($id){
+        $viewCouple = Contest::findOrFail($id);
+        dd($viewCouple);
 
     }
     public function administerContestantStatus($id){
