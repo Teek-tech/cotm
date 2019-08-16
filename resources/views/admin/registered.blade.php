@@ -62,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.box-header -->
         <div class="box-body">
           <div class="table-responsive">
-          @if(count($getByPaystackReference)=='0')
+          @if(count($getByPaystackReference)=="0")
           <table class="table no-margin">
               <thead>
                 <tr>

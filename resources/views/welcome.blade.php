@@ -83,13 +83,14 @@
                 <div class="">
                        <select name="referrer">
                         <option slected value="">Where did you hear about us?</option>
-                        <option value="Chinedu">NONE</option>
                         <option value="ijeoma">IJEOMA</option>
                         <option value="chinedu">CHINEDU</option>
                         <option value="tasie">TASIE</option>
                         <option value="cynthia">CYNTHIA</option>
                         <option value="david">DAVID</option>
                         <option value="somto">SOMTO</option>
+                        <option value="dabs">DABS</option>
+                        <option value="esther">ESTHER</option>
                         <option value="instagram">Instagram</option>
                         <option value="facebook">Facebook</option>
                         <option value="twitter">Twitter</option>
