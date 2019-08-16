@@ -30,8 +30,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+    @if(session()->has('success'))
+                  <div class="alert alert-solid alert-success" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      {{ session()->get('success') }}
+                  </div>
+              @endif
       <h1>
-        All Contestants
+     Referrer: {{ucfirst($viewCouple->referrer)}} 
+     <form action="{{url('admin/'.$viewCouple->id.'/approve')}}" method="post">
+     @csrf
+     @method('PATCH')
+     @if($viewCouple->status==0)
+     <input type="hidden" value="1" name="status">
+     <button type="submit" class="buttonload btn btn-success">
+      <i id="btn-loader1" class="fa fa-spinner fa-spin"></i>
+      <label id="click1">Confirm Couple</label>
+      </button>
+      @else
+      <input type="hidden" value="0" name="status">
+     <button type="submit" class="buttonload btn btn-danger">
+      <i id="btn-loader1" class="fa fa-spinner fa-spin"></i>
+      <label id="click1">Decline Couple</label>
+      </button>
+      @endif
+     </form>
+                
         <!-- <small>Optional description</small> -->
       </h1>
       <!-- <ol class="breadcrumb">
@@ -44,7 +70,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content container-fluid">
      <div class="row">
      <div class="col-md-4">
-     
+     <!-- <h1>{{$viewCouple}}</h1> -->
+     <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <img src="{{asset('user_image/'.$viewCouple->couple_picture)}}"
+            alt="" class="img-rounded img-responsive" />
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <blockquote>
+                <p>{{$viewCouple->first_name_one}} {{$viewCouple->last_name_one}}, {{$viewCouple->first_name_one}} {{$viewCouple->last_name_two}}</p> 
+                <small><cite title="Source Title">{{$viewCouple->state_of_res}}, Nigeria.  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+            </blockquote>
+            <p> <i class="glyphicon glyphicon-envelope"></i> {{$viewCouple->email}}
+                <br/>
+                 <i class="glyphicon glyphicon-globe"></i> {{$viewCouple->couple_type}}
+                <br /> 
+                <i class="glyphicon glyphicon-gift"></i> {{$viewCouple->anniversary_month}}
+                <br /> 
+                <i class="glyphicon glyphicon-phone"></i> {{$viewCouple->phone_no}} | WhatsApp: {{$viewCouple->whatsApp_no}}</p>
+                <br /> 
+                <i class="glyphicon glyphicon-user"></i> Referrer: {{ucfirst($viewCouple->referrer)}} [Total: {{$getReferrer}}].
+              <br>
+              <p>Receipt</p>
+               <div class="col-md-12">
+               <div class="row">
+                <div class="col-md-10 col-sm-6">
+                <a href="{{('/user_receipt/'.$viewCouple->receipt)}}" target="_blank">
+                <img src="{{asset('user_receipt/'.$viewCouple->receipt)}}" 
+                height="100" width="200" alt="" class="img-rounded img-responsive" /></a>
+                </div>
+
+        </div>
+       
+    </div>
+</div>
      </div>
      </div>
     </section>
@@ -74,3 +134,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
      user experience. -->
 </body>
 </html>
+
+<script src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $("#btn-loader1").hide();
+$(".buttonload").click(function(){
+    $("#click1").show();
+    $("#btn-loader1").show();
+});
+});
+</script>

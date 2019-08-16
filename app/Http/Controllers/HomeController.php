@@ -47,9 +47,12 @@ class HomeController extends Controller
         ->orWhere('state_of_res', 'LIKE', '%'.$getRef.'%')
         ->orderBy('id', 'DESC')->paginate(2);
         if(count($getByPaystackReference) > 0){
-            return view('admin.registered', compact('getAllRegisteredContestants','getByPaystackReference'))->withDetails($getByPaystackReference)->withQuery($getRef);;
+            return view('admin.registered', compact('getAllRegisteredContestants',
+            'getByPaystackReference'))
+            ->withDetails($getByPaystackReference)
+            ->withQuery($getRef);
         }
-       return view('admin.registered', compact('getAllRegisteredContestants'));
+       return view('admin.registered', compact('getAllRegisteredContestants','getByPaystackReference'));
     }
 
     public function allContestants(){
@@ -58,18 +61,25 @@ class HomeController extends Controller
         $getYear = Input::get('search_year');
         $searchResults = Contest::where('anniversary_month', $getMonth)->where('contest_year', $getYear)->paginate(1);
         if(count($searchResults) > 0){
-        return view('admin.all-contestants', compact('getAllContestants','searchResults'))->withDetails($searchResults)->withQuery($getMonth, $getYear);
+        return view('admin.all-contestants', 
+        compact('getAllContestants','searchResults'))
+        ->withDetails($searchResults)
+        ->withQuery($getMonth, $getYear);
         }
         return view('admin.all-contestants', compact('getAllContestants','searchResults'));
     }
 
     public function viewContestantProfile($id){
         $viewCouple = Contest::findOrFail($id);
-        dd($viewCouple);
-
+        $getReferrer = $viewCouple->where('referrer', $viewCouple->referrer)->count();
+        return view('admin.view-user', compact('viewCouple','getReferrer'));
     }
-    public function administerContestantStatus($id){
-        $user = Auth::user();
-        $getContestants = Contest::all();
+    public function updateStatus(Request $request, $id)
+    {
+        $updateStatus = Contest::findOrFail($id);
+        $updateStatus->update([
+            'status' =>  $request->input('status', $updateStatus->status),
+       ]);
+       return back()->with('success', 'You have successfully altered this couple registration status.');
     }
 }

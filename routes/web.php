@@ -23,5 +23,6 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::get('/admin', 'HomeController@index')->name('admin.home');
     Route::any('/admin/all-contestants', 'HomeController@allContestants')->name('admin.all-contestants'); 
     Route::any('/admin/registered', 'HomeController@registeredContestants')->name('admin.registered');
-    Route::get('/admin/{id}/couple', 'HomeController@viewContestantProfile')->name('admin.registered.couple');  
-});
+    Route::get('/admin/{id}/couple', 'HomeController@viewContestantProfile')->name('admin.registered.couple'); 
+    Route::patch('/admin/{id}/approve', 'HomeController@updateStatus')->name('admin.approve.couple');  
+    });
