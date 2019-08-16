@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //register form
 Route::post('/welcome', 'ContestController@store')->name('user.register');
 //Admin

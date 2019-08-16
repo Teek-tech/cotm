@@ -79,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <div class="col-sm-6 col-md-6">
             <blockquote>
-                <p>{{$viewCouple->first_name_one}} {{$viewCouple->last_name_one}}, {{$viewCouple->first_name_one}} {{$viewCouple->last_name_two}}</p> 
+            <p>{{ucfirst($viewCouple->first_name_one)}} {{ucfirst($viewCouple->last_name_one)}}, {{ucfirst($viewCouple->first_name_one)}} {{ucfirst($viewCouple->last_name_two)}}</p> 
                 <small><cite title="Source Title">{{$viewCouple->state_of_res}}, Nigeria.  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
             </blockquote>
             <p> <i class="glyphicon glyphicon-envelope"></i> {{$viewCouple->email}}

@@ -30,6 +30,7 @@
       </ul>
     </li>
     <li><a href="#"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
+    <li><a href="{{url('/logout')}}"><i class="fa fa-image"></i> <span>User</span></a></li>
   </ul>
   <!-- /.sidebar-menu -->
 </section>
